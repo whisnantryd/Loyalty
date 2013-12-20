@@ -11,7 +11,7 @@ using Phidgets;
 using Phidgets.Events;
 
 
-namespace WindowsFormsApplication1
+namespace Loyalty
 {
     public partial class Form1 : Form
     {

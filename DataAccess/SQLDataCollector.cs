@@ -4,13 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
-namespace WindowsFormsApplication1.DataAccess
+namespace Loyalty.DataAccess
 {
+
     public class SQLDataCollector
     {
 
@@ -50,9 +48,11 @@ namespace WindowsFormsApplication1.DataAccess
         {
             var isQueued = (bool)requestQueue.Contains(request);
 
+            // Add request to the queue if not already queued
             if (!isQueued)
                 requestQueue.Enqueue(request);
 
+            // Fire the queue process
             if (!bgwRunQueue.IsBusy)
                 bgwRunQueue.RunWorkerAsync();
         }
@@ -72,6 +72,7 @@ namespace WindowsFormsApplication1.DataAccess
             }
             catch (SqlException ex)
             {
+                // To-do - handle sql connection errors
                 Debug.WriteLine(ex.Message);
             }
 
@@ -81,23 +82,26 @@ namespace WindowsFormsApplication1.DataAccess
                 var da = new SqlDataAdapter();
                 var ds = new DataSet();
 
-                // Dequeue the SQLDataRequests and execute them on a SQL connection
+                // Dequeue the SQLDataRequests and execute them on the SQL connection
                 var request = (SQLDataRequest)requestQueue.Dequeue();
                 request.Command.Connection = sqlcon;
                 da.SelectCommand = request.Command;
                 da.Fill(ds);
 
                 // Invoke the callback for this request
+                // Currently only supports single table returns
                 if (null != request.NotifyRequestComplete)
                 {
-                    if (ds.Tables.Count > 0)
-                    {
-                        request.NotifyRequestComplete(request, ds.Tables[0]);
-                    }
-                    else
-                    {
-                        request.NotifyRequestComplete(request, null);
-                    }
+                    request.NotifyRequestComplete(request, ds.Tables.Count > 0 ? ds.Tables[0] : null);
+
+                    //if (ds.Tables.Count > 0)
+                    //{
+                    //    request.NotifyRequestComplete(request, ds.Tables[0]);
+                    //}
+                    //else
+                    //{
+                    //    request.NotifyRequestComplete(request, null);
+                    //}
                 }
 
                 request = null;
@@ -114,6 +118,7 @@ namespace WindowsFormsApplication1.DataAccess
 
         public string GetSQLDateTime(DateTime netdatetime)
         {
+            // Modifies the .net DateTime struct to the SQL expected format
             return netdatetime.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
@@ -161,9 +166,9 @@ namespace WindowsFormsApplication1.DataAccess
         /// This initialize will instantiate a timer that can be used to fire update
         /// requests at a specified interval. Set 'UpdateInterval' to start timer.
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="callback"></param>
-        /// <param name="handler"></param>
+        /// <param name="command">The SQLCommand to execute</param>
+        /// <param name="callback">The method to be called upon completion</param>
+        /// <param name="handler">Abstraction of the method used to queue the command</param>
         public SQLDataRequest(SqlCommand command, RequestCallbackHandler callback, RequestEnqueuHandler handler)
         {
             Command = command;

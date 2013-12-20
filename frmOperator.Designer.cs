@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace Loyalty
 {
     partial class frmOperator
     {
@@ -242,9 +242,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(16, 185);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 29);
+            this.label4.Size = new System.Drawing.Size(91, 29);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Add ID";
+            this.label4.Text = "Add. ID";
             // 
             // label5
             // 
@@ -357,8 +357,9 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(126, 114);
             this.btnSearch.TabIndex = 26;
-            this.btnSearch.Text = "SEARCH OR ADD";
+            this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox2
             // 

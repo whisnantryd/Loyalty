@@ -9,9 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.DataAccess;
+using Loyalty.DataAccess;
+using Loyalty.DataModels;
 
-namespace WindowsFormsApplication1
+namespace Loyalty
 {
     public partial class frmOperator : Form
     {
@@ -46,11 +47,31 @@ namespace WindowsFormsApplication1
         {
             workingCardID = cardUID;
 
-            memTagIO.GetMember(cardUID, MemberFilter.Tag, getMember_Callback);
+            var tagfilter = new MemberFilter()
+            {
+                filtertype = MemberFilterTypes.Tag,
+                data = cardUID
+            };
+
+            memTagIO.GetMember(new List<MemberFilter>() { tagfilter }, getMember_Callback);
         }
 
         #region Form_Input
-        
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var frm = new frmSearch(memTagIO);
+
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtFirstName.Text = frm.SelectedMember.FirstName;
+                txtLastName.Text = frm.SelectedMember.LastName;
+                txtPhone.Text = frm.SelectedMember.PhoneNum;
+                txtTotalPoints.Text = frm.SelectedMember.TotalPoints.ToString();
+                txtTotalPoints.Text = frm.SelectedMember.ActiveTag == null ? "" : frm.SelectedMember.ActiveTag.TagNum;
+            }
+        }
+
         private void clrBtn_Click(object sender, EventArgs e)
         {
             txtAddAmount.Text = "";
@@ -107,6 +128,9 @@ namespace WindowsFormsApplication1
                 recentTrans.Items.Clear();
 
                 row = null;
+
+                //var mem = new Member((DataRow)dt.Rows[0]);
+
             }
         }
 

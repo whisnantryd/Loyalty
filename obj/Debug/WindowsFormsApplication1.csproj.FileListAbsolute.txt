@@ -1,8 +1,3 @@
-C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmOperator.resources
-C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form3.resources
-C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmMain.resources
-C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
@@ -15,4 +10,12 @@ C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\Win
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.application
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe.manifest
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.application
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\Loyalty.Form1.resources
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\Loyalty.frmOperator.resources
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\Loyalty.frmSearch.resources
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\Loyalty.frmMain.resources
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\Loyalty.Properties.Resources.resources
 C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Dapper.dll
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Dapper.pdb
+C:\Users\nmccann\Documents\Code\Forms\Abbey Loyalty\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Dapper.xml

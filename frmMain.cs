@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
-using WindowsFormsApplication1.DataAccess;
-using WindowsFormsApplication1.DataModels;
+using Loyalty.DataAccess;
+using Loyalty.DataModels;
 
-namespace WindowsFormsApplication1
+namespace Loyalty
 {
     public partial class frmMain : Form
     {
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
                 rfid.Antenna = true;
             }
 
-            //MessageBox.Show("Connected to loyalty card reader");
+            MessageBox.Show("Connected to loyalty card reader", "Ready");
         }
 
         // called when an attached rfid reader is unplugged or powered down
@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
 
             }
 
-            MessageBox.Show("Lost connection to loyalty card reader!");
+            MessageBox.Show("Lost connection to loyalty card reader!", "Not ready");
         }
 
         void rfid_Error(object sender, ErrorEventArgs e)
@@ -82,6 +82,8 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            Loyalty.Program.ActiveCard = e.Tag;
+
             // Update last activity for this tag
             MTO.UpdateTag(new Tag
             {
@@ -89,19 +91,18 @@ namespace WindowsFormsApplication1
                 LastActivity = DateTime.Now
             });
 
-
             // Show the operator form
             var frm = new frmOperator(MTO);
             frm.Show();
             frm.SetWorkingCard(e.Tag);
 
-            //// for debugging
-            //var lvi = new ListViewItem();
-            //lvi.Text = "Tag";
-            //lvi.SubItems.Add(DateTime.Now.ToLongTimeString());
-            //lvi.SubItems.Add("Observed tag '" + e.Tag + "'");
+            // for debugging
+            var lvi = new ListViewItem();
+            lvi.Text = "Tag";
+            lvi.SubItems.Add(DateTime.Now.ToLongTimeString());
+            lvi.SubItems.Add("Observed tag '" + e.Tag + "'");
 
-            //listView1.Items.Add(lvi);
+            listView1.Items.Add(lvi);
         }
 
         // called when an attached rfid reader loses detection of a tag
@@ -130,6 +131,11 @@ namespace WindowsFormsApplication1
             Application.DoEvents();
 
             rfid.close();
+        }
+
+        private void cmdShowSearch_Click(object sender, EventArgs e)
+        {
+            new frmSearch(MTO).Show();
         }
 
     }

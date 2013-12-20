@@ -42,6 +42,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dapper.dll" size="77312">
+      <assemblyIdentity name="Dapper" version="1.12.1.1" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>M32ECbhIMWdjzUYstwHO8Hl++zjwAFqsqNJgwNQW7L8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Phidget21.NET.dll" size="142848">
       <assemblyIdentity name="Phidget21.NET" version="2.1.8.173" publicKeyToken="C2B1F2A3594BCE52" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -54,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WindowsFormsApplication1.exe" size="34304">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WindowsFormsApplication1.exe" size="77312">
       <assemblyIdentity name="WindowsFormsApplication1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>88J30mOlJscuG2s08xT1uCUI4Bco4a2i1do/CYqoEGU=</dsig:DigestValue>
+        <dsig:DigestValue>DYoJlRJClUV5JPewTs3WMAP0zZ96i7mTPqV0wYHkkXo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication1.DataModels
+namespace Loyalty.DataModels
 {
     public class Member
     {
@@ -20,28 +20,21 @@ namespace WindowsFormsApplication1.DataModels
         {
         }
 
-        public Member(DataTable dt)
+        public Member(DataRow row)
         {
-            if (dt.Rows.Count == 1)
+            FirstName = (string)row["FirstName"];
+            LastName = (string)row["LastName"];
+            PhoneNum = (string)row["Phone"];
+
+            if (!(row["CardID"] is DBNull))
             {
-                var row = (DataRow)dt.Rows[0];
-
-                FirstName = (string)row["FirstName"];
-                LastName = (string)row["LastName"];
-                PhoneNum = (string)row["Phone"];
-
-                if (!(row["CardID"] is DBNull))
-                {
-                    ActiveTag = new Tag();
-                    ActiveTag.TagNum = (string)row["CardID"];
-                    ActiveTag.Info = (string)row["CardType"];
-                    ActiveTag.LastActivity = (DateTime)row["CardLastSeen"];
-                }
-
-                TotalPoints = row["TotalPoints"] is DBNull ? 0 : (int)row["TotalPoints"];
-
-                row = null;
+                ActiveTag = new Tag();
+                ActiveTag.TagNum = (string)row["CardID"];
+                ActiveTag.Info = (string)row["CardType"];
+                ActiveTag.LastActivity = (DateTime)row["CardLastSeen"];
             }
+
+            TotalPoints = row["TotalPoints"] is DBNull ? 0 : (int)row["TotalPoints"];
         }
 
     }

@@ -5,39 +5,40 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WindowsFormsApplication1.DataModels;
+using Loyalty.DataAccess;
+using Loyalty.DataModels;
 
-namespace WindowsFormsApplication1.DataAccess
+namespace Loyalty.DataAccess
 {
     public class MemberTagIO
     {
 
         public SQLDataCollector DataCollector = new SQLDataCollector("localhost\\SQLEXPRESS", "Loyalty", "abbeyUser", "beer");
 
-        public void GetMember(string filterdata, MemberFilter filtertype, RequestCallbackHandler callback)
+        public void CreateMember(Member memberdata, RequestCallbackHandler callback)
         {
-            var cmd = DataCollector.BuildNewSQLCommand("GetMember");
+            var cmd = DataCollector.BuildNewSQLCommand("InsertMember");
 
-            switch (filtertype)
-            {
-                case MemberFilter.MemberID:
-                    cmd.Parameters.AddWithValue("PkMemberID", filterdata);
-                    break;
-                case MemberFilter.Name:
-                    cmd.Parameters.AddWithValue("Name", filterdata);
-                    break;
-                case MemberFilter.Phone:
-                    cmd.Parameters.AddWithValue("Phone", filterdata);
-                    break;
-                case MemberFilter.Tag:
-                    cmd.Parameters.AddWithValue("Tag", filterdata);
-                    break;
-            }
+            cmd.Parameters.AddWithValue("FirstName", memberdata.FirstName);
+            cmd.Parameters.AddWithValue("LastName", memberdata.LastName);
 
             DataCollector.QueueRequest(new SQLDataRequest(cmd, callback));
 
             cmd = null;
-            filterdata = null;
+        }
+
+        public void GetMember(List<MemberFilter> filters, RequestCallbackHandler callback)
+        {
+            var cmd = DataCollector.BuildNewSQLCommand("GetMember");
+
+            foreach (MemberFilter filter in filters)
+            {
+                addFilter(filter, cmd);
+            }
+            
+            DataCollector.QueueRequest(new SQLDataRequest(cmd, callback));
+
+            cmd = null;
         }
 
         public void UpdateMember(Member memberdata, RequestCallbackHandler callback)
@@ -114,14 +115,39 @@ namespace WindowsFormsApplication1.DataAccess
             cmd = null;
         }
 
+        void addFilter(MemberFilter filter, SqlCommand cmd)
+        {
+            switch (filter.filtertype)
+            {
+                case MemberFilterTypes.MemberID:
+                    cmd.Parameters.AddWithValue("PkMemberID", filter.data);
+                    break;
+                case MemberFilterTypes.Name:
+                    cmd.Parameters.AddWithValue("Name", filter.data);
+                    break;
+                case MemberFilterTypes.Phone:
+                    cmd.Parameters.AddWithValue("Phone", filter.data);
+                    break;
+                case MemberFilterTypes.Tag:
+                    cmd.Parameters.AddWithValue("Tag", filter.data);
+                    break;
+            }
+        }
+
     }
 
-    public enum MemberFilter
+    public enum MemberFilterTypes
     {
         MemberID,
         Tag,
         Name,
         Phone
+    }
+
+    public class MemberFilter
+    {
+        public MemberFilterTypes filtertype;
+        public string data = null;
     }
 
     public class NullKeyException : Exception

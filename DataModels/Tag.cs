@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication1.DataModels
+namespace Loyalty.DataModels
 {
     public class Tag
     {
@@ -23,7 +23,9 @@ namespace WindowsFormsApplication1.DataModels
             {
                 var row = (DataRow)dt.Rows[0];
 
-                //TagNum = 
+                TagNum = (string)row["ID"];
+                Info = (string)row["Info"];
+                LastActivity = (DateTime)row["LastActivity"];
 
                 row = null;
             }

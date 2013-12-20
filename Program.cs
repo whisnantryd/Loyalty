@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.DataAccess;
+using Loyalty.DataAccess;
 
-namespace WindowsFormsApplication1
+namespace Loyalty
 {
     static class Program
     {
+        public delegate void CardDetected_Handler(string cardnum);
+        public delegate void CardLost_Handler();
+
+        public static event CardDetected_Handler CardDetected;
+        public static event CardLost_Handler CardLost;
+
+        public static string ActiveCard = "";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
